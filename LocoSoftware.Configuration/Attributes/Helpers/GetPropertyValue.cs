@@ -5,7 +5,16 @@ namespace LocoSoftware.Configuration.Attributes;
 
 public static partial class Helpers
 {
-
+    
+    /// <summary>
+    /// Gets the Value of a Property by Name if the Property has the <see cref="ConfigurationValueAttribute"/>
+    /// </summary>
+    /// <param name="propertyName"></param>
+    /// <param name="instance"></param>
+    /// <typeparam name="TObjectType"></typeparam>
+    /// <returns></returns>
+    /// <exception cref="PropertyNotFoundException"></exception>
+    /// <exception cref="AttributeNotFoundException"></exception>
     public static Object GetPropertyValue<TObjectType>(String propertyName, TObjectType instance)
     {
         Type t = typeof(TObjectType);
