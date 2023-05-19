@@ -1,11 +1,9 @@
-name: NUnit Tests
+﻿name: NUnit Tests
 
-on:
-  pull_request:
-    types: [opened, reopened, synchronize, edited, unlocked]
+on: [ pull_request ]
     
 jobs:
-  unittest:
+  tests:
     runs-on: ubuntu-latest
     strategy:
       matrix:
