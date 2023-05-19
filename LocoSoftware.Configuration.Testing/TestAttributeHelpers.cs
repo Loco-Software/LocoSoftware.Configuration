@@ -21,7 +21,7 @@ file struct ShouldFailStruct
 }
 
 [TestFixture]
-public class Tests
+public class TestAttributeHelpers
 {
     [Test]
     public void TestHasAttribute()
