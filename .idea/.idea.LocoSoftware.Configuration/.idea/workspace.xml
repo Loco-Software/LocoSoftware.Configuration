@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="106f47b3-43c0-4a05-97ab-60f11beac69d" name="Changes" comment="Updated Workflow File. Not running correctly.">
+      <change beforePath="$PROJECT_DIR$/.github/workflows/tests.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/tests.yml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="mock://C:/Users/OliverKarger/Desktop/Entwicklung/LocoSoftware.Configuration/LocoSoftware.Configuration/Attributes/Exceptions/AttributeNotFoundException.cs" root0="SKIP_HIGHLIGHTING" />
+  </component>
+  <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
+  <component name="ProjectId" id="2Pz78Rg0Sw1w8hYOg3j1zUJ6FSw" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "rider.external.source.directories": [
+      "C:\\Users\\OliverKarger\\AppData\\Roaming\\JetBrains\\Rider2023.1\\resharper-host\\DecompilerCache",
+      "C:\\Users\\OliverKarger\\AppData\\Roaming\\JetBrains\\Rider2023.1\\resharper-host\\SourcesCache",
+      "C:\\Users\\OliverKarger\\AppData\\Local\\Symbols\\src"
+    ]
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="106f47b3-43c0-4a05-97ab-60f11beac69d" name="Changes" comment="" />
+      <created>1684447898169</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1684447898169</updated>
+      <workItem from="1684447899583" duration="97000" />
+      <workItem from="1684496202851" duration="4007000" />
+    </task>
+    <task id="LOCAL-00001" summary="Added Documentation for GetPropertyValue.cs">
+      <created>1684447959579</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1684447959579</updated>
+    </task>
+    <task id="LOCAL-00002" summary="AddObject Method completed">
+      <created>1684503247215</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1684503247215</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Fixed some null reference issues and added documentation">
+      <created>1684503619029</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1684503619029</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Added GitHub Action for Testing.">
+      <created>1684504362478</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1684504362478</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Updated GitHub Workflow. Should now trigger correctly.">
+      <created>1684504483704</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1684504483704</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Updated Workflow File. Not running correctly.">
+      <created>1684504666993</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1684504666993</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="UnitTestsCoverage.Settings">
+    <option name="coveragePercentColumnWidth" value="150" />
+    <option name="sortOrder" value="DESCENDING" />
+    <option name="sortedColumn" value="1" />
+    <option name="symbolColumnWidth" value="352" />
+    <coverage-tree-state>
+      <expand>
+        <path>
+          <item name="rootNode" type="c53c71d1:RiderDotCoverCoverageTreeModel$RootNode" />
+          <item name="Total 94% 8/124" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+        </path>
+        <path>
+          <item name="rootNode" type="c53c71d1:RiderDotCoverCoverageTreeModel$RootNode" />
+          <item name="Total 94% 8/124" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+          <item name="LocoSoftware.Configuration 89% 8/76" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+        </path>
+        <path>
+          <item name="rootNode" type="c53c71d1:RiderDotCoverCoverageTreeModel$RootNode" />
+          <item name="Total 94% 8/124" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+          <item name="LocoSoftware.Configuration 89% 8/76" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+          <item name="LocoSoftware.Configuration 89% 8/76" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+        </path>
+        <path>
+          <item name="rootNode" type="c53c71d1:RiderDotCoverCoverageTreeModel$RootNode" />
+          <item name="Total 94% 8/124" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+          <item name="LocoSoftware.Configuration 89% 8/76" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+          <item name="LocoSoftware.Configuration 89% 8/76" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+          <item name="Extension 100% 0/15" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+        </path>
+        <path>
+          <item name="rootNode" type="c53c71d1:RiderDotCoverCoverageTreeModel$RootNode" />
+          <item name="Total 94% 8/124" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+          <item name="LocoSoftware.Configuration 89% 8/76" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+          <item name="LocoSoftware.Configuration 89% 8/76" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+          <item name="Extension 100% 0/15" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+          <item name="ConfigurationBuilderExtensions 100% 0/15" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+        </path>
+        <path>
+          <item name="rootNode" type="c53c71d1:RiderDotCoverCoverageTreeModel$RootNode" />
+          <item name="Total 94% 8/124" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+          <item name="LocoSoftware.Configuration 89% 8/76" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+          <item name="LocoSoftware.Configuration 89% 8/76" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+          <item name="Extension 100% 0/15" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+          <item name="ConfigurationBuilderExtensions 100% 0/15" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+          <item name="AddObject&lt;T&gt;(IConfigurationBuilder,T) 100% 0/15" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+        </path>
+        <path>
+          <item name="rootNode" type="c53c71d1:RiderDotCoverCoverageTreeModel$RootNode" />
+          <item name="Total 94% 8/124" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+          <item name="LocoSoftware.Configuration 89% 8/76" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+          <item name="LocoSoftware.Configuration 89% 8/76" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+          <item name="Attributes 87% 8/61" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+        </path>
+        <path>
+          <item name="rootNode" type="c53c71d1:RiderDotCoverCoverageTreeModel$RootNode" />
+          <item name="Total 94% 8/124" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+          <item name="LocoSoftware.Configuration 89% 8/76" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+          <item name="LocoSoftware.Configuration 89% 8/76" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+          <item name="Attributes 87% 8/61" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+          <item name="Helpers 82% 8/44" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+        </path>
+      </expand>
+      <select />
+    </coverage-tree-state>
+  </component>
+  <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
+  <component name="VcsManagerConfiguration">
+    <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+    <MESSAGE value="Added Documentation for GetPropertyValue.cs" />
+    <MESSAGE value="AddObject Method completed" />
+    <MESSAGE value="Fixed some null reference issues and added documentation" />
+    <MESSAGE value="Added GitHub Action for Testing." />
+    <MESSAGE value="Updated GitHub Workflow. Should now trigger correctly." />
+    <MESSAGE value="Updated Workflow File. Not running correctly." />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated Workflow File. Not running correctly." />
+  </component>
+</project>
