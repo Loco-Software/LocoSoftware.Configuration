@@ -25,16 +25,6 @@ public static partial class ConfigurationBuilderExtensions
         // Get Property Names and Types and add the Object Namespace to the Name
         List<MappedPropertyInfo> mappedProperties = new List<MappedPropertyInfo>();
         IEnumerable<PropertyInfo> objectProperties = typeof(T).GetProperties();
-        /*
-            typeof(T).GetProperties().ForEach(e =>
-            {
-                if (Helpers.HasAttribute<T, ConfigurationValueAttribute>(e.Name))
-                {
-                    String propertyName = $"{objectNamespace}:{Helpers.GetObjectName<T>(e.Name)}";
-                    Type propertyType = Helpers.GetObjectType<T>(e.Name);
-                    return new KeyValuePair<string, Type>(propertyName, propertyType);
-                }
-            }); */
 
         foreach (PropertyInfo property in objectProperties)
         {
