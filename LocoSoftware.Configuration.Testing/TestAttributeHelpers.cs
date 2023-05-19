@@ -6,7 +6,7 @@ namespace LocoSoftware.Configuration.Testing;
 
 [ExcludeFromCodeCoverage]
 [ConfigurationNamespace("AttributeTestStruct")]
-public struct TestStruct
+file struct TestStruct
 {
         
     [ConfigurationValue("TestProperty", typeof(String))]
@@ -16,7 +16,7 @@ public struct TestStruct
         
 }
 
-public struct ShouldFailStruct
+file struct ShouldFailStruct
 {
 }
 

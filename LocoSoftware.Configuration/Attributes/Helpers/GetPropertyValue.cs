@@ -15,7 +15,7 @@ public static partial class Helpers
     /// <returns></returns>
     /// <exception cref="PropertyNotFoundException"></exception>
     /// <exception cref="AttributeNotFoundException"></exception>
-    public static Object GetPropertyValue<TObjectType>(String propertyName, TObjectType instance)
+    public static String GetPropertyValue<TObjectType>(String propertyName, TObjectType instance)
     {
         Type t = typeof(TObjectType);
         PropertyInfo? property = t.GetProperty(propertyName);
@@ -33,7 +33,7 @@ public static partial class Helpers
                 $"Property {propertyName} of Object {nameof(TObjectType)} does not have the ConfigurationValueAttribute Attribute!");
         }
         
-        Object? propertyValue = property.GetValue(instance, null);
+        String? propertyValue = property.GetValue(instance, null).ToString();
         
         return propertyValue;
     }
