@@ -19,13 +19,13 @@ public static class Program
     struct ConfigurationStruct
     {
         // [ConfigurationValue(...)] Declares, that this Property should be mapped in the Configuration
-        // First Parameter is the Name, second the Data Type. This is currently unused but will be
+        // First Parameter is the Name, second the Data Type. The last one is currently unused but will be
         // required in a planned Feature.
         [ConfigurationValue("ApplicationName", typeof(String))
         public String ApplicationName { get; set; }
         
-        // Properties with the [ConfigurationValue(...)] Attribute will not be mapped and ignored. 
-        // A [IgnoreInConfiguration] Attribute will be added to explicitly ignore a Property
+        // Properties with the [IgnoreInConfiguration] Attribute will not be mapped and ignored. 
+        [IgnoreInConfiguration]
         public String Unrelevant { get; set; }
     
     }
@@ -42,9 +42,17 @@ public static class Program
         // The resulting IConfigurationRoot would look like this:
         // Configuration:ApplicationName = "Sample Application to Demonstrate LocoSoftware.Configuration"
         
+        IConfigurationRoot config = builder.Build();
+        String appName = config.GetValue<String>("Configuration:ApplicationName");
+        
+        Debug.Assert(appName == "Sample Application to Demonstrate LocoSoftware.Configuration");
+        
         // If a nested Namespace would be set e. g.  [ConfigurationNamespace("Configuration:Core")]
         // it would look like that:
         // Configuration:Core:ApplicationName = "Sample Application to Demonstrate LocoSoftware.Configuration"
+        
+        // All Data Types will be Converted to a String. 
+        // This limitation will be removed in a future Release
     }
 
 } 

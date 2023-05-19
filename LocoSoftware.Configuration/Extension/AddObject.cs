@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using System.Diagnostics;
+using System.Reflection;
 using LocoSoftware.Configuration.Attributes;
 using Microsoft.Extensions.Configuration;
 
@@ -9,7 +10,6 @@ namespace LocoSoftware.Configuration.Extension;
 /// </summary>
 public static partial class ConfigurationBuilderExtensions
 {
-    
     /// <summary>
     /// Adds a Single Object of Type T
     /// </summary>
@@ -28,7 +28,7 @@ public static partial class ConfigurationBuilderExtensions
 
         foreach (PropertyInfo property in objectProperties)
         {
-            if (Helpers.HasAttribute<T, ConfigurationValueAttribute>(property.Name))
+            if (Helpers.HasAttribute<T, ConfigurationValueAttribute>(property.Name) && !Helpers.HasAttribute<T, IgnoreInConfigurationAttribute>(property.Name))
             {
                 String propertyName = $"{objectNamespace}:{Helpers.GetObjectName<T>(property.Name)}";
                 Type propertyType = Helpers.GetObjectType<T>(property.Name);
@@ -44,5 +44,4 @@ public static partial class ConfigurationBuilderExtensions
         
         return builder;
     }
-    
 }
