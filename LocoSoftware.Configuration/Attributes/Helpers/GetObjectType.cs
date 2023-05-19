@@ -31,8 +31,13 @@ public static partial class Helpers
                 $"Property {propertyName} of Object {nameof(TObjectType)} does not have the ConfigurationValueAttribute Attribute!");
         }
         
-        ConfigurationValueAttribute attr = property.GetCustomAttribute(typeof(ConfigurationValueAttribute), true) as ConfigurationValueAttribute;
+        ConfigurationValueAttribute? attr = property.GetCustomAttribute(typeof(ConfigurationValueAttribute), true) as ConfigurationValueAttribute;
 
+        if (attr == null)
+        {
+            throw new AttributeNotFoundException("Could not find Attribute!");
+        }
+        
         return attr.ObjectType;
     }
 }

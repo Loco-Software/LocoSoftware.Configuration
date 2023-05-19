@@ -33,7 +33,12 @@ public static partial class Helpers
                 $"Property {propertyName} of Object {nameof(TObjectType)} does not have the ConfigurationValueAttribute Attribute!");
         }
         
-        String? propertyValue = property.GetValue(instance, null).ToString();
+        String? propertyValue = property.GetValue(instance, null)?.ToString();
+
+        if (propertyValue == null)
+        {
+            throw new Exception("Cannot Get Value of Property. May be an invalid format?");
+        }
         
         return propertyValue;
     }

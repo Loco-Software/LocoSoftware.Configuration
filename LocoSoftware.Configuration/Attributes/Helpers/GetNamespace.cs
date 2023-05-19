@@ -2,6 +2,9 @@
 
 namespace LocoSoftware.Configuration.Attributes;
 
+/// <summary>
+/// Utility and Helpers
+/// </summary>
 public static partial class Helpers
 {
     
