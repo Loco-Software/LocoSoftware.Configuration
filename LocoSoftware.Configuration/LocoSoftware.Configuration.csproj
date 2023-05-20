@@ -6,13 +6,28 @@
         <Nullable>enable</Nullable>
         <Title>LocoSoftware.Configuration</Title>
         <Authors>Oliver Karger</Authors>
+        <Copyright>Loco Software (C) 2023</Copyright>
+        <PackageProjectUrl>https://github.com/Loco-Software/LocoSoftware.Configuration</PackageProjectUrl>
+        <!--<PackageLicenseUrl>https://github.com/Loco-Software/LocoSoftware.Configuration/blob/main/License</PackageLicenseUrl>-->
+        <PackageLicenseFile>License.txt</PackageLicenseFile>
+        <RepositoryUrl>https://github.com/Loco-Software/LocoSoftware.Configuration</RepositoryUrl>
+        <RepositoryType>Git</RepositoryType>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <Version>0.9.1</Version>
+        <AssemblyVersion>0.9.1</AssemblyVersion>
+        <FileVersion>0.9.1</FileVersion>
     </PropertyGroup>
 
+    <ItemGroup>
+        <None Include="../License.txt" Pack="true" PackagePath="$(PackageLicenseFile)"/>
+    </ItemGroup>
+    
     <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
       <DebugSymbols>true</DebugSymbols>
       <DebugType>embedded</DebugType>
       <DocumentationFile>bin\Release\LocoSoftware.Configuration.xml</DocumentationFile>
       <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+      <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
     </PropertyGroup>
 
     <ItemGroup>

@@ -39,6 +39,11 @@ public static partial class Helpers
         
         String? propertyValue = property.GetValue(instance, null)?.ToString();
         
+        if (propertyValue == null)
+        {
+            throw new NullReferenceException("Failed to read PropertyValue on Object");
+        }
+        
         return propertyValue;
     }
     
