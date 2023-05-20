@@ -15,7 +15,7 @@ public static class Program
 
     // [ConfigurationNamespace(...)]  Declares, that this Struct is a Configuration Namespace
     // This does not have to be a Top-level Namespace. It can also be a nested one like Configuration:Module1
-    [ConfigurationNamespace("Configuration")] // 
+    [ConfigurationNamespace("Configuration")]
     struct ConfigurationStruct
     {
         // [ConfigurationValue(...)] Declares, that this Property should be mapped in the Configuration
@@ -27,7 +27,23 @@ public static class Program
         // Properties with the [IgnoreInConfiguration] Attribute will not be mapped and ignored. 
         [IgnoreInConfiguration]
         public String Unrelevant { get; set; }
-    
+    }
+
+    // [ConfigurationNamespace(...)]  Declares, that this Struct is a Configuration Namespace
+    // Alternativly, [ConfigurationNamespace("", true)] can be used to enable automatic Property Mapping
+    // This will map all Properties using their respective Names
+    [ConfigurationNamespace("Configuration", true)]
+    struct ConfigurationStructWithAutoMap
+    {
+        // [ConfigurationValue(...)] Declares, that this Property should be mapped in the Configuration
+        // First Parameter is the Name, second the Data Type. The last one is currently unused but will be
+        // required in a planned Feature.
+        [ConfigurationValue("ApplicationName", typeof(String))
+        public String ApplicationName { get; set; }
+        
+        // Properties with the [IgnoreInConfiguration] Attribute will not be mapped and ignored. 
+        [IgnoreInConfiguration]
+        public String Unrelevant { get; set; }
     }
 
     public static void Main(){
