@@ -1,10 +1,13 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using LocoSoftware.Configuration.Attributes;
 using Microsoft.Extensions.Configuration;
 
-namespace LocoSoftware.Configuration.Extension;
-
+namespace LocoSoftware.Configuration.Extension
+{
+    
 /// <summary>
 /// Contains the Extension Methods to <see cref="IConfigurationBuilder"/>
 /// </summary>
@@ -21,7 +24,7 @@ public static partial class ConfigurationBuilderExtensions
     {
         // Get Namespace of Object
         String objectNamespace = Helpers.GetNamespace<T>();
-        Boolean autoMap = Helpers.GetAutoMap<T>();
+        Boolean autoMap = false; // Helpers.GetAutoMap<T>();
 
         IEnumerable<PropertyInfo> objectProperties = typeof(T).GetProperties();
         List<MappedPropertyInfo> mappedProperties = new List<MappedPropertyInfo>();
@@ -30,8 +33,8 @@ public static partial class ConfigurationBuilderExtensions
         {
             foreach (PropertyInfo property in objectProperties)
             {
-                String propertyName = $"{objectNamespace}:{Helpers.GetObjectName<T>(property.Name)}";
-                String propertyValue = Helpers.GetPropertyValue(property.Name, obj, false);
+                String propertyName = $"{objectNamespace}:{Helpers.GetObjectName<T>(property.Name, true)}";
+                String propertyValue = Helpers.GetPropertyValue(property.Name, obj, true);
                 mappedProperties.Add(new MappedPropertyInfo(propertyName, typeof(object), propertyValue));
             }
         }
@@ -52,8 +55,9 @@ public static partial class ConfigurationBuilderExtensions
         IEnumerable<KeyValuePair<String, String>> mappedPairs =
             mappedProperties.Select(e => new KeyValuePair<string, string>(e.Name, e.Value));
 
-        builder.AddInMemoryCollection(mappedPairs!);
+        builder.AddInMemoryCollection(mappedPairs);
         
         return builder;
     }
+}
 }

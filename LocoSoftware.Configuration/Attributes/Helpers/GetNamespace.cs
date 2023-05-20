@@ -1,27 +1,30 @@
-﻿using LocoSoftware.Configuration.Attributes.Exceptions;
+﻿using System;
+using LocoSoftware.Configuration.Attributes.Exceptions;
 
-namespace LocoSoftware.Configuration.Attributes;
-
-/// <summary>
-/// Utility and Helpers
-/// </summary>
-public static partial class Helpers
+namespace LocoSoftware.Configuration.Attributes
 {
     
     /// <summary>
-    /// Get the ObjectNamespace Value of the <see cref="ConfigurationNamespaceAttribute"/> of a Type
+    /// Utility and Helpers
     /// </summary>
-    /// <typeparam name="TObjectType"></typeparam>
-    /// <returns></returns>
-    /// <exception cref="AttributeNotFoundException"></exception>
-    public static String GetNamespace<TObjectType>()
+    public static partial class Helpers
     {
-        ConfigurationNamespaceAttribute? attr = Attribute.GetCustomAttribute(typeof(TObjectType), typeof(ConfigurationNamespaceAttribute)) as ConfigurationNamespaceAttribute;
-        if (attr == null)
+    
+        /// <summary>
+        /// Get the ObjectNamespace Value of the <see cref="ConfigurationNamespaceAttribute"/> of a Type
+        /// </summary>
+        /// <typeparam name="TObjectType"></typeparam>
+        /// <returns></returns>
+        /// <exception cref="AttributeNotFoundException"></exception>
+        public static String GetNamespace<TObjectType>()
         {
-            throw new AttributeNotFoundException(
-                $"Object of Type {nameof(TObjectType)} does not have the {nameof(ConfigurationNamespaceAttribute)}");
+            ConfigurationNamespaceAttribute attr = Attribute.GetCustomAttribute(typeof(TObjectType), typeof(ConfigurationNamespaceAttribute)) as ConfigurationNamespaceAttribute;
+            if (attr == null)
+            {
+                throw new AttributeNotFoundException(
+                    $"Object of Type {nameof(TObjectType)} does not have the {nameof(ConfigurationNamespaceAttribute)}");
+            }
+            return attr.ObjectNamespace;
         }
-        return attr.ObjectNamespace;
     }
 }

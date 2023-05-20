@@ -1,32 +1,19 @@
-using System.Diagnostics.CodeAnalysis;
+using System;
+using LocoSoftware.Configuration.Testing.Mocks;
 using LocoSoftware.Configuration.Attributes;
 using LocoSoftware.Configuration.Attributes.Exceptions;
+using NUnit.Framework;
 
-namespace LocoSoftware.Configuration.Testing;
-
-[ExcludeFromCodeCoverage]
-[ConfigurationNamespace("AttributeTestStruct")]
-file struct TestStruct
+namespace LocoSoftware.Configuration.Testing
 {
-        
-    [ConfigurationValue("TestProperty", typeof(String))]
-    public String TestProperty { get; set; }
     
-    public String ShouldFailProperty { get; set;  }
-        
-}
-
-file struct ShouldFailStruct
-{
-}
-
 [TestFixture]
 public class TestAttributeHelpers
 {
     [Test]
     public void TestHasAttribute()
     {
-        Boolean hasAttribute = Helpers.HasAttribute<TestStruct, ConfigurationNamespaceAttribute>();
+        Boolean hasAttribute = Helpers.HasAttribute<ManualMapStruct, ConfigurationNamespaceAttribute>();
         Assert.True(hasAttribute);
     }
 
@@ -34,8 +21,8 @@ public class TestAttributeHelpers
     public void TestHasAttributeOnProperty()
     {
         Assert.Throws<PropertyNotFoundException>(() =>
-            Helpers.HasAttribute<TestStruct, ConfigurationValueAttribute>("NonExistingProperty"));
-        Boolean hasAttribute = Helpers.HasAttribute<TestStruct, ConfigurationValueAttribute>("TestProperty");
+            Helpers.HasAttribute<ManualMapStruct, ConfigurationValueAttribute>("NonExistingProperty"));
+        Boolean hasAttribute = Helpers.HasAttribute<ManualMapStruct, ConfigurationValueAttribute>("TestProperty");
         Assert.True(hasAttribute);
     }
 
@@ -44,7 +31,7 @@ public class TestAttributeHelpers
     {
         Assert.Throws<AttributeNotFoundException>(() => Helpers.GetNamespace<ShouldFailStruct>());
         
-        String namespaceName = Helpers.GetNamespace<TestStruct>();
+        String namespaceName = Helpers.GetNamespace<ManualMapStruct>();
         Assert.That(namespaceName, Is.EqualTo("AttributeTestStruct"));
     }
     
@@ -53,43 +40,44 @@ public class TestAttributeHelpers
     {
         Assert.Throws<AttributeNotFoundException>(() => Helpers.GetNamespace<ShouldFailStruct>());
         
-        Boolean namespaceName = Helpers.GetAutoMap<TestStruct>();
+        Boolean namespaceName = Helpers.GetAutoMap<ManualMapStruct>();
         Assert.That(namespaceName, Is.EqualTo(false));
     }
 
     [Test]
     public void TestGetObjectName()
     {
-        Assert.Throws<AttributeNotFoundException>(() => Helpers.GetObjectName<TestStruct>("ShouldFailProperty"));
+        Assert.Throws<AttributeNotFoundException>(() => Helpers.GetObjectName<ManualMapStruct>("ShouldFailProperty"));
         Assert.Throws<PropertyNotFoundException>(() => Helpers.GetObjectName<ShouldFailStruct>("NonExistingProperty"));
         
-        String objectName = Helpers.GetObjectName<TestStruct>("TestProperty");
+        String objectName = Helpers.GetObjectName<ManualMapStruct>("TestProperty");
         Assert.That(objectName, Is.EqualTo("TestProperty"));
     }
 
     [Test]
     public void TestGetObjectType()
     {       
-        Assert.Throws<AttributeNotFoundException>(() => Helpers.GetObjectType<TestStruct>("ShouldFailProperty"));
+        Assert.Throws<AttributeNotFoundException>(() => Helpers.GetObjectType<ManualMapStruct>("ShouldFailProperty"));
         Assert.Throws<PropertyNotFoundException>(() => Helpers.GetObjectType<ShouldFailStruct>("NonExistingProperty"));
 
-        Type objectType = Helpers.GetObjectType<TestStruct>("TestProperty");
+        Type objectType = Helpers.GetObjectType<ManualMapStruct>("TestProperty");
         Assert.That(objectType, Is.EqualTo(typeof(String)));
     }
 
     [Test]
     public void TestGetPropertyValue()
     {
-        TestStruct testStructInstance = new TestStruct();
-        testStructInstance.TestProperty = "Hello, World!";
-        Assert.Throws<PropertyNotFoundException>(() => Helpers.GetPropertyValue<TestStruct>("NonExistingProperty", testStructInstance));
+        ManualMapStruct manualMapStructInstance = new ManualMapStruct();
+        manualMapStructInstance.TestProperty = "Hello, World!";
+        Assert.Throws<PropertyNotFoundException>(() => Helpers.GetPropertyValue<ManualMapStruct>("NonExistingProperty", manualMapStructInstance));
         // Assert.Throws<MemberAccessException>(() => Helpers.GetPropertyValue<TestStruct>("ShouldFailProperty", testStructInstance));
-        Assert.Throws<AttributeNotFoundException>(() => Helpers.GetPropertyValue<TestStruct>("ShouldFailProperty", testStructInstance));
+        Assert.Throws<AttributeNotFoundException>(() => Helpers.GetPropertyValue<ManualMapStruct>("ShouldFailProperty", manualMapStructInstance));
 
-        Object value = Helpers.GetPropertyValue<TestStruct>("TestProperty", testStructInstance);
+        Object value = Helpers.GetPropertyValue<ManualMapStruct>("TestProperty", manualMapStructInstance);
         String valueAsString = (String)value;
         
         Assert.That(valueAsString, Is.EqualTo("Hello, World!"));
 
     }
+}
 }
