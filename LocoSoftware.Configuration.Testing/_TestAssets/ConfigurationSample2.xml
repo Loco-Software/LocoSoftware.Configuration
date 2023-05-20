@@ -1,0 +1,8 @@
+<LocoSoftware.Configuration>
+    
+    <AttributeTestStruct>
+        <TestProperty>Value2A</TestProperty>
+        <TestProperty2>Value1A</TestProperty2>
+    </AttributeTestStruct>
+    
+</LocoSoftware.Configuration>

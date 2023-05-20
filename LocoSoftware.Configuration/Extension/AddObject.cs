@@ -21,19 +21,31 @@ public static partial class ConfigurationBuilderExtensions
     {
         // Get Namespace of Object
         String objectNamespace = Helpers.GetNamespace<T>();
+        Boolean autoMap = Helpers.GetAutoMap<T>();
 
-        // Get Property Names and Types and add the Object Namespace to the Name
-        List<MappedPropertyInfo> mappedProperties = new List<MappedPropertyInfo>();
         IEnumerable<PropertyInfo> objectProperties = typeof(T).GetProperties();
+        List<MappedPropertyInfo> mappedProperties = new List<MappedPropertyInfo>();
 
-        foreach (PropertyInfo property in objectProperties)
+        if (autoMap)
         {
-            if (Helpers.HasAttribute<T, ConfigurationValueAttribute>(property.Name) && !Helpers.HasAttribute<T, IgnoreInConfigurationAttribute>(property.Name))
+            foreach (PropertyInfo property in objectProperties)
             {
                 String propertyName = $"{objectNamespace}:{Helpers.GetObjectName<T>(property.Name)}";
-                Type propertyType = Helpers.GetObjectType<T>(property.Name);
-                String propertyValue = Helpers.GetPropertyValue(property.Name, obj);
-                mappedProperties.Add(new MappedPropertyInfo(propertyName, propertyType, propertyValue));
+                String propertyValue = Helpers.GetPropertyValue(property.Name, obj, false);
+                mappedProperties.Add(new MappedPropertyInfo(propertyName, typeof(object), propertyValue));
+            }
+        }
+        else
+        {
+            foreach (PropertyInfo property in objectProperties)
+            {
+                if (Helpers.HasAttribute<T, ConfigurationValueAttribute>(property.Name) && !Helpers.HasAttribute<T, IgnoreInConfigurationAttribute>(property.Name))
+                {
+                    String propertyName = $"{objectNamespace}:{Helpers.GetObjectName<T>(property.Name)}";
+                    Type propertyType = Helpers.GetObjectType<T>(property.Name);
+                    String propertyValue = Helpers.GetPropertyValue(property.Name, obj);
+                    mappedProperties.Add(new MappedPropertyInfo(propertyName, propertyType, propertyValue));
+                }
             }
         }
 

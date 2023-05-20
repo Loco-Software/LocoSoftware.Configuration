@@ -13,11 +13,18 @@ public class ConfigurationNamespaceAttribute : Attribute
     public String ObjectNamespace { get; private set; }
     
     /// <summary>
+    /// Automatic Mapping of all Properties based on their Name
+    /// </summary>
+    public Boolean AutoMap { get; private set; }
+    
+    /// <summary>
     /// Constructor
     /// </summary>
-    /// <param name="objectNamespace"></param>
-    public ConfigurationNamespaceAttribute(String objectNamespace)
+    /// <param name="objectNamespace">Base Namespace of all nested Objects</param>
+    /// <param name="autoMap">Automatic Mapping of all Properties based on their Name</param>
+    public ConfigurationNamespaceAttribute(String objectNamespace, Boolean autoMap = false)
     {
         this.ObjectNamespace = objectNamespace;
+        this.AutoMap = autoMap;
     }
 }

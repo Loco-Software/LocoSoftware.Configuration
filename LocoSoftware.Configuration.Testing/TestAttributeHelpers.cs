@@ -47,6 +47,15 @@ public class TestAttributeHelpers
         String namespaceName = Helpers.GetNamespace<TestStruct>();
         Assert.That(namespaceName, Is.EqualTo("AttributeTestStruct"));
     }
+    
+    [Test]
+    public void GetTestAutoMapValue()
+    {
+        Assert.Throws<AttributeNotFoundException>(() => Helpers.GetNamespace<ShouldFailStruct>());
+        
+        Boolean namespaceName = Helpers.GetAutoMap<TestStruct>();
+        Assert.That(namespaceName, Is.EqualTo(false));
+    }
 
     [Test]
     public void TestGetObjectName()

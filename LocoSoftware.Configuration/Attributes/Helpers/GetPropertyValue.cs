@@ -11,11 +11,12 @@ public static partial class Helpers
     /// </summary>
     /// <param name="propertyName"></param>
     /// <param name="instance"></param>
+    /// <param name="checkAttribute"></param>
     /// <typeparam name="TObjectType"></typeparam>
     /// <returns></returns>
     /// <exception cref="PropertyNotFoundException"></exception>
     /// <exception cref="AttributeNotFoundException"></exception>
-    public static String GetPropertyValue<TObjectType>(String propertyName, TObjectType instance)
+    public static String GetPropertyValue<TObjectType>(String propertyName, TObjectType instance, Boolean checkAttribute = true)
     {
         Type t = typeof(TObjectType);
         PropertyInfo? property = t.GetProperty(propertyName);
@@ -25,20 +26,18 @@ public static partial class Helpers
             throw new PropertyNotFoundException(
                 $"Object of Type {nameof(TObjectType)} has no Public Accessible Property {propertyName}");
         }
-        
-        Boolean hasAttribute = HasAttribute<TObjectType, ConfigurationValueAttribute>(propertyName);
-        if (!hasAttribute)
+
+        if (checkAttribute)
         {
-            throw new AttributeNotFoundException(
-                $"Property {propertyName} of Object {nameof(TObjectType)} does not have the ConfigurationValueAttribute Attribute!");
+            Boolean hasAttribute = HasAttribute<TObjectType, ConfigurationValueAttribute>(propertyName);
+            if (!hasAttribute)
+            {
+                throw new AttributeNotFoundException(
+                    $"Property {propertyName} of Object {nameof(TObjectType)} does not have the ConfigurationValueAttribute Attribute!");
+            }
         }
         
         String? propertyValue = property.GetValue(instance, null)?.ToString();
-
-        if (propertyValue == null)
-        {
-            throw new Exception("Cannot Get Value of Property. May be an invalid format?");
-        }
         
         return propertyValue;
     }

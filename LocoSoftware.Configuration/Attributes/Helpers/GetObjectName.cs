@@ -32,11 +32,6 @@ public static partial class Helpers
         }
         
         ConfigurationValueAttribute? attr = property.GetCustomAttribute(typeof(ConfigurationValueAttribute), true) as ConfigurationValueAttribute;
-
-        if (attr == null)
-        {
-            throw new AttributeNotFoundException("Could not find Attribute!");
-        }
         
         return attr.ObjectName;
     }
