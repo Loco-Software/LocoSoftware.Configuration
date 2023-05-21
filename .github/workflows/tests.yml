@@ -13,7 +13,7 @@ jobs:
         dotnet-version: [ '2.x', '3.1.x', '6.0.x', '7.0.x' ]
         operating-systems: [ 'windows-latest' ]
         
-    runs-on: ${{ matrix.operating-system }}
+    runs-on: ${{ matrix.operating-systems }}
     steps:
       - uses: actions/checkout@v3
       - name: Setup .NET SDK ${{ matrix.dotnet-version }} 
