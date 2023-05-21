@@ -16,6 +16,7 @@ namespace LocoSoftware.Configuration.Attributes
         /// <typeparam name="TObjectType"></typeparam>
         /// <returns></returns>
         /// <exception cref="AttributeNotFoundException"></exception>
+        [Obsolete("Use GetConfigurationNamespaceData() instead")]
         public static String GetNamespace<TObjectType>()
         {
             ConfigurationNamespaceAttribute attr = Attribute.GetCustomAttribute(typeof(TObjectType), typeof(ConfigurationNamespaceAttribute)) as ConfigurationNamespaceAttribute;

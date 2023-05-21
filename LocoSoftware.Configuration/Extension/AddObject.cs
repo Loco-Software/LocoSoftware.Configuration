@@ -23,18 +23,19 @@ public static partial class ConfigurationBuilderExtensions
     public static IConfigurationBuilder AddObject<T>(this IConfigurationBuilder builder, T obj)
     {
         // Get Namespace of Object
-        String objectNamespace = Helpers.GetNamespace<T>();
-        Boolean autoMap = false; // Helpers.GetAutoMap<T>();
+        ConfigurationNamespaceData namespaceData  = Helpers.GetConfigurationNamespaceData<T>();
 
         IEnumerable<PropertyInfo> objectProperties = typeof(T).GetProperties();
         List<MappedPropertyInfo> mappedProperties = new List<MappedPropertyInfo>();
 
-        if (autoMap)
+        if (namespaceData.AutoMap)
         {
             foreach (PropertyInfo property in objectProperties)
             {
-                String propertyName = $"{objectNamespace}:{Helpers.GetObjectName<T>(property.Name, true)}";
-                String propertyValue = Helpers.GetPropertyValue(property.Name, obj, true);
+                ConfigurationValueData valueData =
+                    Helpers.GetConfigurationValueData(property.Name, obj, namespaceData.AutoMap);
+                String propertyName = $"{namespaceData.ObjectNamespace}:{valueData.ObjectName}";
+                String propertyValue = valueData.ObjectValue;
                 mappedProperties.Add(new MappedPropertyInfo(propertyName, typeof(object), propertyValue));
             }
         }
@@ -44,9 +45,11 @@ public static partial class ConfigurationBuilderExtensions
             {
                 if (Helpers.HasAttribute<T, ConfigurationValueAttribute>(property.Name) && !Helpers.HasAttribute<T, IgnoreInConfigurationAttribute>(property.Name))
                 {
-                    String propertyName = $"{objectNamespace}:{Helpers.GetObjectName<T>(property.Name)}";
-                    Type propertyType = Helpers.GetObjectType<T>(property.Name);
-                    String propertyValue = Helpers.GetPropertyValue(property.Name, obj);
+                    ConfigurationValueData valueData =
+                        Helpers.GetConfigurationValueData(property.Name, obj, namespaceData.AutoMap);
+                    String propertyName = $"{namespaceData.ObjectNamespace}:{valueData.ObjectName}";
+                    Type propertyType = valueData.ObjectType;
+                    String propertyValue = valueData.ObjectValue;
                     mappedProperties.Add(new MappedPropertyInfo(propertyName, propertyType, propertyValue));
                 }
             }

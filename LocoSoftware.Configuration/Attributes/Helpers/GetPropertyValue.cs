@@ -18,6 +18,7 @@ namespace LocoSoftware.Configuration.Attributes
         /// <returns></returns>
         /// <exception cref="PropertyNotFoundException"></exception>
         /// <exception cref="AttributeNotFoundException"></exception>
+        [Obsolete("Use GetConfigurationValueData() instead")]
         public static String GetPropertyValue<TObjectType>(String propertyName, TObjectType instance, Boolean autoMap = false)
         {
             Type t = typeof(TObjectType);

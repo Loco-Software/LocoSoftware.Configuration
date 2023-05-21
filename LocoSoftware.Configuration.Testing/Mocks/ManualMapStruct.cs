@@ -6,11 +6,12 @@ namespace LocoSoftware.Configuration.Testing.Mocks
 {
     [ExcludeFromCodeCoverage]
     [ConfigurationNamespace("AttributeTestStruct")]
-    struct ManualMapStruct
+    public struct ManualMapStruct
     {
         
         [ConfigurationValue("TestProperty", typeof(String))]
         public String TestProperty { get; set; }
+        
     
         public String ShouldFailProperty { get; set;  }
         

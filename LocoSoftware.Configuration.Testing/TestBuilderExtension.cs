@@ -15,7 +15,7 @@ namespace LocoSoftware.Configuration.Testing
         /// Tests the AddObject Extension Method with Auto Map Enabled
         /// </summary>
         [Test]
-        [Ignore("Feature Broken At the Moment. AutoMap will be disabled for now")]
+        // [Ignore("Feature Broken At the Moment. AutoMap will be disabled for now")]
         public void TestAddObjectAutoMap()
         {
             IConfigurationBuilder builder = new ConfigurationBuilder();

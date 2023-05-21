@@ -8,7 +8,6 @@ namespace LocoSoftware.Configuration.Testing
 {
     
 [TestFixture]
-[Ignore("Broken since implementing Multi-Framework Target")]
 public class TestBuilderExtensionIntegration
 {
 
@@ -68,6 +67,7 @@ public class TestBuilderExtensionIntegration
     /// Initial Data by a AddObject being overwritten
     /// </summary>
     [Test]
+    [Ignore("Broken. Need to investigate Loading Hierarchy in ConfigurationBuilder")]
     public void TestIntegrationWithOverride2()
     {
         IConfigurationBuilder builder = new ConfigurationBuilder();
