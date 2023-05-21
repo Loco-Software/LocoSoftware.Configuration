@@ -27,11 +27,11 @@ namespace LocoSoftware.Configuration.Testing
         
             IConfigurationRoot configuration = builder.Build();
 
-            Assert.NotNull(configuration.GetValue<String>("AttributeTestStruct2:TestProperty"));
-            Assert.NotNull(configuration.GetValue<String>("AttributeTestStruct2:TestProperty2"));
+            Assert.NotNull(configuration.GetValue<String>("AutoMapStructNamespace:TestProperty"));
+            Assert.NotNull(configuration.GetValue<String>("AutoMapStructNamespace:TestProperty2"));
         
-            Assert.That(configuration.GetValue<String>("AttributeTestStruct2:TestProperty"), Is.EqualTo("Hello there,"));
-            Assert.That(configuration.GetValue<String>("AttributeTestStruct2:TestProperty2"), Is.EqualTo("General Kenobi"));
+            Assert.That(configuration.GetValue<String>("AutoMapStructNamespace:TestProperty"), Is.EqualTo("Hello there,"));
+            Assert.That(configuration.GetValue<String>("AutoMapStructNamespace:TestProperty2"), Is.EqualTo("General Kenobi"));
         }
     
         /// <summary>
@@ -48,9 +48,9 @@ namespace LocoSoftware.Configuration.Testing
 
             IConfigurationRoot configuration = builder.Build();
         
-            Assert.NotNull(configuration.GetValue<String>("AttributeTestStruct:TestProperty"));
+            Assert.NotNull(configuration.GetValue<String>("ManualMapStructNamespace:TestProperty"));
         
-            Assert.That(configuration.GetValue<String>("AttributeTestStruct:TestProperty"), Is.EqualTo("Hello there, General Kenobi"));
+            Assert.That(configuration.GetValue<String>("ManualMapStructNamespace:TestProperty"), Is.EqualTo("Hello there, General Kenobi"));
         }
     }
 }

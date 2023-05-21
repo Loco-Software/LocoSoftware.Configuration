@@ -23,6 +23,8 @@
   <ItemGroup>
     <Content Include="./_TestAssets/ConfigurationSample.xml" CopyToOutputDirectory="Always" />
     <Content Include="./_TestAssets/ConfigurationSample2.xml" CopyToOutputDirectory="Always" />
+    <Content Include="./_TestAssets/AutoMapStruct.xml" CopyToOutputDirectory="Always" />
+    <Content Include="./_TestAssets/ManualMapStruct.xml" CopyToOutputDirectory="Always" />
   </ItemGroup>
   
 </Project>

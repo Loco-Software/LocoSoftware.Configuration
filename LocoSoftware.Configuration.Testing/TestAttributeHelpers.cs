@@ -35,9 +35,9 @@ public class TestAttributeHelpers
         Assert.NotNull(manualMapNamespaceData);
         
         // Check if Values are correct
-        Assert.That(autoMapNamespaceData.ObjectNamespace, Is.EqualTo("AttributeTestStruct2"));
+        Assert.That(autoMapNamespaceData.ObjectNamespace, Is.EqualTo("AutoMapStructNamespace"));
         Assert.That(autoMapNamespaceData.AutoMap, Is.EqualTo(true));
-        Assert.That(manualMapNamespaceData.ObjectNamespace, Is.EqualTo("AttributeTestStruct"));
+        Assert.That(manualMapNamespaceData.ObjectNamespace, Is.EqualTo("ManualMapStructNamespace"));
         Assert.That(manualMapNamespaceData.AutoMap, Is.EqualTo(false));
     }
 
@@ -98,76 +98,5 @@ public class TestAttributeHelpers
         // Value Checks
         Assert.That(manualMapStructProperty1ValueData.ObjectValue, Is.EqualTo("Hello, World!"));
     }
-
-    #region 2023-05-21 Obsolete Tests
-    [Test]
-    [Ignore("Test is obsolete. Will be removed")]
-    public void TestHasAttributeOnProperty()
-    {
-        Assert.Throws<PropertyNotFoundException>(() =>
-            Helpers.HasAttribute<ManualMapStruct, ConfigurationValueAttribute>("NonExistingProperty"));
-        Boolean hasAttribute = Helpers.HasAttribute<ManualMapStruct, ConfigurationValueAttribute>("TestProperty");
-        Assert.True(hasAttribute);
-    }
-
-    [Test]
-    [Ignore("Test is obsolete. Will be removed")]
-    public void TestGetNamespaceAttribute()
-    {
-        Assert.Throws<AttributeNotFoundException>(() => Helpers.GetNamespace<ShouldFailStruct>());
-        
-        String namespaceName = Helpers.GetNamespace<ManualMapStruct>();
-        Assert.That(namespaceName, Is.EqualTo("AttributeTestStruct"));
-    }
-    
-    [Test]
-    [Ignore("Test is obsolete. Will be removed")]
-    public void GetTestAutoMapValue()
-    {
-        Assert.Throws<AttributeNotFoundException>(() => Helpers.GetNamespace<ShouldFailStruct>());
-        
-        Boolean namespaceName = Helpers.GetAutoMap<ManualMapStruct>();
-        Assert.That(namespaceName, Is.EqualTo(false));
-    }
-
-    [Test]
-    [Ignore("Test is obsolete. Will be removed")]
-    public void TestGetObjectName()
-    {
-        Assert.Throws<AttributeNotFoundException>(() => Helpers.GetObjectName<ManualMapStruct>("ShouldFailProperty"));
-        Assert.Throws<PropertyNotFoundException>(() => Helpers.GetObjectName<ShouldFailStruct>("NonExistingProperty"));
-        
-        String objectName = Helpers.GetObjectName<ManualMapStruct>("TestProperty");
-        Assert.That(objectName, Is.EqualTo("TestProperty"));
-    }
-
-    [Test]
-    [Ignore("Test is obsolete. Will be removed")]
-    public void TestGetObjectType()
-    {       
-        Assert.Throws<AttributeNotFoundException>(() => Helpers.GetObjectType<ManualMapStruct>("ShouldFailProperty"));
-        Assert.Throws<PropertyNotFoundException>(() => Helpers.GetObjectType<ShouldFailStruct>("NonExistingProperty"));
-
-        Type objectType = Helpers.GetObjectType<ManualMapStruct>("TestProperty");
-        Assert.That(objectType, Is.EqualTo(typeof(String)));
-    }
-
-    [Test]
-    [Ignore("Test is obsolete. Will be removed")]
-    public void TestGetPropertyValue()
-    {
-        ManualMapStruct manualMapStructInstance = new ManualMapStruct();
-        manualMapStructInstance.TestProperty = "Hello, World!";
-        Assert.Throws<PropertyNotFoundException>(() => Helpers.GetPropertyValue<ManualMapStruct>("NonExistingProperty", manualMapStructInstance));
-        // Assert.Throws<MemberAccessException>(() => Helpers.GetPropertyValue<TestStruct>("ShouldFailProperty", testStructInstance));
-        Assert.Throws<AttributeNotFoundException>(() => Helpers.GetPropertyValue<ManualMapStruct>("ShouldFailProperty", manualMapStructInstance));
-
-        Object value = Helpers.GetPropertyValue<ManualMapStruct>("TestProperty", manualMapStructInstance);
-        String valueAsString = (String)value;
-        
-        Assert.That(valueAsString, Is.EqualTo("Hello, World!"));
-
-    }
-    #endregion
 }
 }

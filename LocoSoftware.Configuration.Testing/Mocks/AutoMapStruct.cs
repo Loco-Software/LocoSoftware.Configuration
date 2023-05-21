@@ -5,7 +5,7 @@ using LocoSoftware.Configuration.Attributes;
 namespace LocoSoftware.Configuration.Testing.Mocks
 {
     [ExcludeFromCodeCoverage]
-    [ConfigurationNamespace("AttributeTestStruct2", true)]
+    [ConfigurationNamespace("AutoMapStructNamespace", true)]
     public struct AutoMapStruct
     {
         public String TestProperty { get; set; }
