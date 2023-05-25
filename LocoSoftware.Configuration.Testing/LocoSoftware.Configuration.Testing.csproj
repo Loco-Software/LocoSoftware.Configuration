@@ -3,7 +3,7 @@
   <PropertyGroup>
     <IsPackable>false</IsPackable>
     <IsTestProject>true</IsTestProject>
-    <TargetFrameworks>net7.0;net462;net481</TargetFrameworks>
+    <TargetFrameworks>net7.0;net6.0</TargetFrameworks>
     <OutputType>Library</OutputType>
   </PropertyGroup>
 

@@ -7,10 +7,10 @@ on:
       - main
         
 jobs:
-  tests:
+  Tests:
     strategy:
       matrix:
-        dotnet-version: [ '4.6.x', '4.8.x', '7.0.x' ]
+        dotnet-version: [ '6.0.x', '7.0.x' ]
         operating-systems: [ 'windows-latest' ]
         
     runs-on: ${{ matrix.operating-systems }}
