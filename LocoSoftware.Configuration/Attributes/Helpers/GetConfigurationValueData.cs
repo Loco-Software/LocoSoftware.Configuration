@@ -27,6 +27,9 @@ namespace LocoSoftware.Configuration.Attributes
         public Type ObjectType { get;  set;  }
     }
     
+    /// <summary>
+    /// Helper Methods
+    /// </summary>
     public static partial class Helpers
     {
         
