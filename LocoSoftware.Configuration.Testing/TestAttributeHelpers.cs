@@ -1,86 +1,102 @@
-using System.Diagnostics.CodeAnalysis;
+using System;
+using LocoSoftware.Configuration.Testing.Mocks;
 using LocoSoftware.Configuration.Attributes;
 using LocoSoftware.Configuration.Attributes.Exceptions;
+using NUnit.Framework;
 
-namespace LocoSoftware.Configuration.Testing;
-
-[ExcludeFromCodeCoverage]
-[ConfigurationNamespace("AttributeTestStruct")]
-file struct TestStruct
+namespace LocoSoftware.Configuration.Testing
 {
-        
-    [ConfigurationValue("TestProperty", typeof(String))]
-    public String TestProperty { get; set; }
     
-    public String ShouldFailProperty { get; set;  }
-        
-}
-
-file struct ShouldFailStruct
-{
-}
-
 [TestFixture]
 public class TestAttributeHelpers
 {
     [Test]
     public void TestHasAttribute()
     {
-        Boolean hasAttribute = Helpers.HasAttribute<TestStruct, ConfigurationNamespaceAttribute>();
+        Boolean hasAttribute = Helpers.HasAttribute<ManualMapStruct, ConfigurationNamespaceAttribute>();
         Assert.True(hasAttribute);
     }
 
     [Test]
-    public void TestHasAttributeOnProperty()
+    public void TestGetConfigurationNamespaceData()
     {
-        Assert.Throws<PropertyNotFoundException>(() =>
-            Helpers.HasAttribute<TestStruct, ConfigurationValueAttribute>("NonExistingProperty"));
-        Boolean hasAttribute = Helpers.HasAttribute<TestStruct, ConfigurationValueAttribute>("TestProperty");
-        Assert.True(hasAttribute);
-    }
-
-    [Test]
-    public void TestGetNamespaceAttribute()
-    {
-        Assert.Throws<AttributeNotFoundException>(() => Helpers.GetNamespace<ShouldFailStruct>());
+        // Test on Auto Map Struct
+        ConfigurationNamespaceData autoMapNamespaceData = Helpers.GetConfigurationNamespaceData<Mocks.AutoMapStruct>();
         
-        String namespaceName = Helpers.GetNamespace<TestStruct>();
-        Assert.That(namespaceName, Is.EqualTo("AttributeTestStruct"));
-    }
+        // Test on Manual Map Struct
+        ConfigurationNamespaceData manualMapNamespaceData =
+            Helpers.GetConfigurationNamespaceData<Mocks.ManualMapStruct>();
 
-    [Test]
-    public void TestGetObjectName()
-    {
-        Assert.Throws<AttributeNotFoundException>(() => Helpers.GetObjectName<TestStruct>("ShouldFailProperty"));
-        Assert.Throws<PropertyNotFoundException>(() => Helpers.GetObjectName<ShouldFailStruct>("NonExistingProperty"));
+        // Should fail on Struct without attribute
+        Assert.Throws<AttributeNotFoundException>(() => Helpers.GetConfigurationNamespaceData<Mocks.ShouldFailStruct>());
         
-        String objectName = Helpers.GetObjectName<TestStruct>("TestProperty");
-        Assert.That(objectName, Is.EqualTo("TestProperty"));
-    }
-
-    [Test]
-    public void TestGetObjectType()
-    {       
-        Assert.Throws<AttributeNotFoundException>(() => Helpers.GetObjectType<TestStruct>("ShouldFailProperty"));
-        Assert.Throws<PropertyNotFoundException>(() => Helpers.GetObjectType<ShouldFailStruct>("NonExistingProperty"));
-
-        Type objectType = Helpers.GetObjectType<TestStruct>("TestProperty");
-        Assert.That(objectType, Is.EqualTo(typeof(String)));
-    }
-
-    [Test]
-    public void TestGetPropertyValue()
-    {
-        TestStruct testStructInstance = new TestStruct();
-        testStructInstance.TestProperty = "Hello, World!";
-        Assert.Throws<PropertyNotFoundException>(() => Helpers.GetPropertyValue<TestStruct>("NonExistingProperty", testStructInstance));
-        // Assert.Throws<MemberAccessException>(() => Helpers.GetPropertyValue<TestStruct>("ShouldFailProperty", testStructInstance));
-        Assert.Throws<AttributeNotFoundException>(() => Helpers.GetPropertyValue<TestStruct>("ShouldFailProperty", testStructInstance));
-
-        Object value = Helpers.GetPropertyValue<TestStruct>("TestProperty", testStructInstance);
-        String valueAsString = (String)value;
+        // Null Checks
+        Assert.NotNull(autoMapNamespaceData);
+        Assert.NotNull(manualMapNamespaceData);
         
-        Assert.That(valueAsString, Is.EqualTo("Hello, World!"));
-
+        // Check if Values are correct
+        Assert.That(autoMapNamespaceData.ObjectNamespace, Is.EqualTo("AutoMapStructNamespace"));
+        Assert.That(autoMapNamespaceData.AutoMap, Is.EqualTo(true));
+        Assert.That(manualMapNamespaceData.ObjectNamespace, Is.EqualTo("ManualMapStructNamespace"));
+        Assert.That(manualMapNamespaceData.AutoMap, Is.EqualTo(false));
     }
+
+    [Test] public void TestGetConfigurationValueDataAutoMap()
+    {
+        AutoMapStruct autoMapInstance = new AutoMapStruct
+        {
+            TestProperty = "Hello, World!",
+            TestProperty2 = "Hello there, General Kenobi"
+        };
+
+        // Test on Auto Map Struct
+        ConfigurationNamespaceData autoMapNamespaceData = Helpers.GetConfigurationNamespaceData<Mocks.AutoMapStruct>();
+        
+        // Test on Manual Map Struct
+        ConfigurationNamespaceData manualMapNamespaceData =
+            Helpers.GetConfigurationNamespaceData<Mocks.ManualMapStruct>();
+        
+        // Null Checks
+        Assert.NotNull(autoMapNamespaceData);
+        Assert.NotNull(manualMapNamespaceData);
+        
+        // Test on Properties of AutoMapStruct
+        ConfigurationValueData autoMapStructProperty1ValueData =
+            Helpers.GetConfigurationValueData("TestProperty", autoMapInstance, true);
+        ConfigurationValueData autoMapStructProperty2ValueData =
+            Helpers.GetConfigurationValueData("TestProperty2", autoMapInstance, true);
+        
+        // Null Checks
+        Assert.NotNull(autoMapStructProperty1ValueData);
+        Assert.NotNull(autoMapStructProperty2ValueData);
+        
+        // Value Checks
+        Assert.That(autoMapStructProperty1ValueData.ObjectValue, Is.EqualTo("Hello, World!"));
+        Assert.That(autoMapStructProperty2ValueData.ObjectValue, Is.EqualTo("Hello there, General Kenobi"));
+    }
+    
+    
+    [Test] public void TestGetConfigurationValueDataManualMap()
+    {
+        ManualMapStruct manualMapInstance = new ManualMapStruct
+        {
+            TestProperty = "Hello, World!",
+            ShouldFailProperty = "Hello there, General Kenobi"
+        };
+        
+        // Test on Properties of ManualMapStruct
+        ConfigurationValueData manualMapStructProperty1ValueData =
+            Helpers.GetConfigurationValueData("TestProperty", manualMapInstance);
+        
+        // Should fail as this property does not have the ConfigurationValue Attribute
+        Assert.Throws<AttributeNotFoundException>(() =>
+            Helpers.GetConfigurationValueData("ShouldFailProperty", manualMapInstance));
+        
+        // Null Checks
+        Assert.NotNull(manualMapStructProperty1ValueData);
+        
+        // Value Checks
+        Assert.That(manualMapStructProperty1ValueData.ObjectValue, Is.EqualTo("Hello, World!"));
+    }
+}
 }

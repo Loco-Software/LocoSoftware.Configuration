@@ -1,0 +1,8 @@
+<LocoSoftware.Configuration>
+    
+    <ExampleConfiguration>
+        <Value1>Value2A</Value1>
+        <Value2>Value1A</Value2>
+    </ExampleConfiguration>
+    
+</LocoSoftware.Configuration>

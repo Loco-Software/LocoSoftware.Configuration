@@ -1,0 +1,6 @@
+<LocoSoftware.Configuration>
+    <AutoMapStructNamespace>
+        <TestProperty>TestPropertyValue</TestProperty>
+        <TestProperty2>TestProperty2Value</TestProperty2>
+    </AutoMapStructNamespace>
+</LocoSoftware.Configuration>

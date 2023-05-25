@@ -7,12 +7,13 @@ on:
       - main
         
 jobs:
-  tests:
-    runs-on: ubuntu-latest
+  Tests:
     strategy:
       matrix:
-        dotnet-version: [ '3.1.x', '6.0.x', '7.0.x' ]
+        dotnet-version: [ '6.0.x', '7.0.x' ]
+        operating-systems: [ 'windows-latest' ]
         
+    runs-on: ${{ matrix.operating-systems }}
     steps:
       - uses: actions/checkout@v3
       - name: Setup .NET SDK ${{ matrix.dotnet-version }} 

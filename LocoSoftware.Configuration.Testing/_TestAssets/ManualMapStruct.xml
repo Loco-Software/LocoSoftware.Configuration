@@ -1,0 +1,5 @@
+<LocoSoftware.Configuration>
+    <ManualMapStructNamespace>
+        <TestProperty>TestPropertyValue</TestProperty>
+    </ManualMapStructNamespace>
+</LocoSoftware.Configuration>

@@ -1,15 +1,19 @@
-﻿namespace LocoSoftware.Configuration.Attributes.Exceptions;
+﻿using System;
 
-/// <summary>
-/// Exception thrown when a specified Property does not have the required Attribute
-/// </summary>
-public class AttributeNotFoundException : Exception
+namespace LocoSoftware.Configuration.Attributes.Exceptions
 {
     /// <summary>
-    /// Constructor
+    /// Exception thrown when a specified Property does not have the required Attribute
     /// </summary>
-    /// <param name="message"></param>
-    public AttributeNotFoundException(string message) : base(message)
+    public class AttributeNotFoundException : Exception
     {
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="message"></param>
+        public AttributeNotFoundException(string message) : base(message)
+        {
+        }
     }
 }
+

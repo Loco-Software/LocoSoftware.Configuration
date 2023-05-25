@@ -1,9 +1,13 @@
-﻿namespace LocoSoftware.Configuration.Attributes;
+﻿using System;
 
-/// <summary>
-/// Used to explicitly Ignore an Property in the Configuraiton
-/// </summary>
-public class IgnoreInConfigurationAttribute : Attribute
+namespace LocoSoftware.Configuration.Attributes
 {
+    /// <summary>
+    /// Used to explicitly Ignore an Property in the Configuraiton
+    /// </summary>
+    public class IgnoreInConfigurationAttribute : Attribute
+    {
     
+    }
 }
+
